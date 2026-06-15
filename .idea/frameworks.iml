@@ -155,6 +155,18 @@
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/storage/app" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/storage/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/laravel/sanctum" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/data-fixtures" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/doctrine-fixtures-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/doctrine/orm" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/property-access" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/property-info" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/type-info" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
