@@ -1,0 +1,256 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Laravel Video API",
+    "version": "1.0.0",
+    "description": "A simple API for managing a collection of videos."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/videos": {
+      "get": {
+        "summary": "List all videos",
+        "description": "Retrieves a list of all videos in the collection.",
+        "operationId": "listVideos",
+        "responses": {
+          "200": {
+            "description": "A list of videos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Video"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new video",
+        "description": "Adds a new video to the collection.",
+        "operationId": "createVideo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VideoStoreRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Video created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Video"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (e.g., validation error)"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/videos/{videoId}": {
+      "parameters": [
+        {
+          "name": "videoId",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the video to retrieve.",
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get a single video",
+        "description": "Retrieves the details of a specific video by its ID.",
+        "operationId": "getVideoById",
+        "responses": {
+          "200": {
+            "description": "The requested video.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Video"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Video not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a video",
+        "description": "Updates the details of an existing video.",
+        "operationId": "updateVideo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VideoUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Video updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Video"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (e.g., validation error)"
+          },
+          "404": {
+            "description": "Video not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a video",
+        "description": "Deletes a video from the collection.",
+        "operationId": "deleteVideo",
+        "responses": {
+          "204": {
+            "description": "Video deleted successfully."
+          },
+          "404": {
+            "description": "Video not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Video": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique identifier for the video.",
+            "readOnly": true,
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "The title of the video.",
+            "example": "Learning Laravel 11"
+          },
+          "description": {
+            "type": "string",
+            "description": "A short description of the video content.",
+            "example": "A comprehensive tutorial on the new features in Laravel 11."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 255,
+            "description": "The URL where the video is hosted.",
+            "example": "https://example.com/videos/learning-laravel-11"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the video was created.",
+            "readOnly": true,
+            "example": "2023-10-26T10:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the video was last updated.",
+            "readOnly": true,
+            "example": "2023-10-26T12:30:00Z"
+          }
+        }
+      },
+      "VideoStoreRequest": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "The title of the video.",
+            "example": "Getting Started with OpenAPI"
+          },
+          "description": {
+            "type": "string",
+            "description": "A short description of the video content.",
+            "example": "Learn how to write an OpenAPI specification from scratch."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 255,
+            "description": "The URL where the video is hosted.",
+            "example": "https://example.com/videos/openapi-intro"
+          }
+        }
+      },
+      "VideoUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "The title of the video.",
+            "example": "Advanced OpenAPI Techniques"
+          },
+          "description": {
+            "type": "string",
+            "description": "A short description of the video content.",
+            "example": "Diving deeper into components and schemas."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 255,
+            "description": "The URL where the video is hosted.",
+            "example": "https://example.com/videos/openapi-advanced"
+          }
+        }
+      }
+    }
+  }
+}
