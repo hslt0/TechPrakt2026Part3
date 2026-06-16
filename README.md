@@ -4,6 +4,8 @@ Generated documents:
 
 [Laravel](generated_open_api_docs/laravel_openapi.json)
 
+[Postman Workspace](https://hslt-2373152.postman.co/workspace/80866b14-81de-42d3-bea1-856251b9ff8a)
+
 Prompt:
 
 Act as an experienced system architect and API designer. Write a detailed, valid, and fully completed OpenAPI 3.0 specification document in JSON format for {name of your API or service}.
